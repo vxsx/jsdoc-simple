@@ -43,8 +43,7 @@ function publish(symbolSet) {
 		var classTemplate     = new JSDOC.JsPlate(publish.conf.templatesDir+"class.tmpl"),
             classesTemplate   = new JSDOC.JsPlate(publish.conf.templatesDir+"allclasses.tmpl"),
             docsIndexTemplate = new JSDOC.JsPlate(publish.conf.templatesDir+"docsindex.tmpl"),
-            userDocTemplate   = new JSDOC.JsPlate(publish.conf.templatesDir+"userdoc.tmpl"),
-            cssTemplate       = new JSDOC.JsPlate(publish.conf.templatesDir+"css.tmpl");
+            userDocTemplate   = new JSDOC.JsPlate(publish.conf.templatesDir+"userdoc.tmpl");
 	} catch(e) {
 		print("Couldn't create the required templates: "+e);
 		quit();
@@ -101,7 +100,6 @@ function publish(symbolSet) {
         }
     }
 
-    publish.css = cssTemplate.process();
     publish.docsIndex = hasDocsList ? docsIndexTemplate.process(docsList) : "";
  	publish.classesIndex = classesTemplate.process(classes); // kept in memory
 
