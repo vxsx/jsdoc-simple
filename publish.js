@@ -40,10 +40,11 @@ function publish(symbolSet) {
 
 	// create the required templates
 	try {
-		var classTemplate = new JSDOC.JsPlate(publish.conf.templatesDir+"class.tmpl");
-		var classesTemplate = new JSDOC.JsPlate(publish.conf.templatesDir+"allclasses.tmpl");
-        var docsIndexTemplate = new JSDOC.JsPlate(publish.conf.templatesDir+"docsindex.tmpl");
-        var userDocTemplate = new JSDOC.JsPlate(publish.conf.templatesDir+"userdoc.tmpl");
+		var classTemplate     = new JSDOC.JsPlate(publish.conf.templatesDir+"class.tmpl"),
+            classesTemplate   = new JSDOC.JsPlate(publish.conf.templatesDir+"allclasses.tmpl"),
+            docsIndexTemplate = new JSDOC.JsPlate(publish.conf.templatesDir+"docsindex.tmpl"),
+            userDocTemplate   = new JSDOC.JsPlate(publish.conf.templatesDir+"userdoc.tmpl"),
+            cssTemplate       = new JSDOC.JsPlate(publish.conf.templatesDir+"css.tmpl");
 	} catch(e) {
 		print("Couldn't create the required templates: "+e);
 		quit();
@@ -100,6 +101,7 @@ function publish(symbolSet) {
         }
     }
 
+    publish.css = cssTemplate.process();
     publish.docsIndex = hasDocsList ? docsIndexTemplate.process(docsList) : "";
  	publish.classesIndex = classesTemplate.process(classes); // kept in memory
 
@@ -252,7 +254,7 @@ function publish(symbolSet) {
 	fileindexTemplate = filesIndex = files = null;
 
     // copy static files
-    var staticDir = publish.conf.outDir + 'static';
+    var staticDir = publish.conf.outDir + 'static/css'; //come on, we don't have another static files
 	IO.mkPath(staticDir.split('/'));
     IO.ls( publish.conf.templatesDir+'static' ).forEach(function(f){
         // copy all static files unless they are .css files
@@ -262,7 +264,7 @@ function publish(symbolSet) {
     });
 
     try {
-        IO.copyFile(publish.conf.templatesDir + 'static/' + JSDOC.opt.D.cssFile, staticDir);
+        IO.copyFile(publish.conf.templatesDir + 'static/css/' + JSDOC.opt.D.cssFile, staticDir);
     } catch (e) {
         print("Could not copy CSS file because: " + e.message);
         quit();
