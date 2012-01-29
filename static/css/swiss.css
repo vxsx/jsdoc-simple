@@ -8,7 +8,9 @@ body {
   font-family: "PT Serif",  "Georgia",  "Helvetica Neue",  Arial,  sans-serif;
   min-width: 800px;
   max-width: 1400px;
-  background-color: #f2f2f2; }
+  background-color: #f2f2f2;
+  margin: 1em;
+  padding: 0; }
   @media screen and (min-width: 992px) {
     body {
       font-size: 1.15em; } }
@@ -113,9 +115,6 @@ pre.code {
   left: 8px;
   padding: 0; }
 
-#index h2 {
-  border-bottom: 2px groove #ddd; }
-
 #symbolList {
   position: relative;
   float: right;
@@ -141,24 +140,18 @@ pre.code {
 #content {
   text-align: left;
   position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1%;
-  padding-right: 1%;
-  width: 62%;
-  /* width: 600px; */ }
+  margin-left: 18%; }
 
 .classList {
   list-style-type: none;
   padding: 0;
-  margin: 0 0 0 8px;
-  font-family: arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1em;
   overflow: auto; }
 
 .classList li {
   padding: 0;
-  margin: 0 0 8px 0; }
+  margin-bottom: 0.5em; }
 
 .summaryTable {
   width: 100%; }
@@ -200,7 +193,6 @@ td.attributes, .fixedFont {
   font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace !important;
   overflow: scroll;
   overflow-y: hidden;
-  padding: .8em !important;
   overflow-x: auto;
   line-height: 1.45em; }
 
@@ -210,16 +202,13 @@ td.attributes, .fixedFont {
   padding: 0; }
 
 .member .description {
-  margin: 0.75em 0 0 0;
-  padding: 0 0.5em 0 0.5em; }
+  padding: 0 0 0.2em; }
 
 .summaryTable td.nameDescription {
   text-align: left;
-  font-size: 13px;
-  line-height: 15px; }
+  font-size: 13px; }
 
 .summaryTable td.nameDescription, .description {
-  line-height: 15px;
   padding: 4px;
   padding-left: 4px; }
 
@@ -261,3 +250,12 @@ code {
 
 .fineprint {
   display: none; }
+
+a[name] {
+  position: relative;
+  display: block; }
+  a[name]::before {
+    content: '';
+    display: block;
+    height: 30px;
+    margin: -30px 0 0; }
