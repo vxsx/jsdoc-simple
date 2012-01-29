@@ -252,17 +252,17 @@ function publish(symbolSet) {
 	fileindexTemplate = filesIndex = files = null;
 
     // copy static files
-    var staticDir = publish.conf.outDir + 'static/css'; //come on, we don't have another static files
-	IO.mkPath(staticDir.split('/'));
+    var staticDir = publish.conf.outDir + 'static'; //come on, we don't have another static files
+	IO.mkPath((staticDir+'/css').split('/'));
     IO.ls( publish.conf.templatesDir+'static' ).forEach(function(f){
         // copy all static files unless they are .css files
-        if (f.lastIndexOf(".css") === -1) {
+        if (f.lastIndexOf(".css") === -1) { //TODO: this doesn't seem to work
             IO.copyFile(f, staticDir);
         }
     });
 
     try {
-        IO.copyFile(publish.conf.templatesDir + 'static/css/' + JSDOC.opt.D.cssFile, staticDir);
+        IO.copyFile(publish.conf.templatesDir + 'static/css/' + JSDOC.opt.D.cssFile, staticDir+'/css/');
     } catch (e) {
         print("Could not copy CSS file because: " + e.message);
         quit();
